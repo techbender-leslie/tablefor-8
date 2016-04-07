@@ -2,7 +2,7 @@
 <br>
 
 <div class="well col-sm-4">
-<form class="form-horizontal" role="form" ng-submit="index.createDinner()">
+<form class="form-horizontal" role="form" data-ng-submit="index.createDinner()">
 	<fieldset>
 		<legend>Add a New Dinner</legend>
 		<!-- <div ng-include="'templates/_form.html'"></div> -->
@@ -70,23 +70,23 @@
       </div>
     </div>
 
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label class="col-sm-2 control-label">Capacity</label>
       <div class="col-sm-9">
         <div class="radio">
           <label>
-            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity6" value="capacity6">
+            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity6" value="6">
             6 people
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity8" value="capacity8">
+            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity8" value="8">
            8 people
           </label>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="form-group">
       <label for="calendar" class="col-sm-2 control-label">Calendar</label>
@@ -153,20 +153,20 @@
     <!-- <div ng-hide="dinner.editForm"> -->
       <div class="pull-right">
      <!--  <a href="#" ng-click="dinner.editForm = true"><h2><i class="fa fa-pencil"></i></h2></a> -->
-      <a href="#" ng-click="index.deleteDinner(dinner)"><p><i class="fa fa times"></i></p></a>
+        <a href="#" ng-click="index.deleteDinner(dinner)"><p><i class="fa fa times"></i></p></a>
       </div>
-      <h1 class="list-group-item-text" id="dinner-name">{{dinner.dinnername}}</h1>
-      <img ng-src="{{dinner.image}}" class="img-responsive">
-      <br>
-      <h3 class="list-group-item-text" id="cuisine-type"><b>CUISINE: </b>{{dinner.cuisinetype}}</h3>
-      <h3 class="list-group-item-text" id="where">{{dinner.where}}</h3>
-      <h4 class="list-group-item-text" id="capacity">{{dinner.capacity}}</h4>
-      <hr>
-    </div>
+        <h1 class="list-group-item-text" id="dinner-name">{{dinner.dinnername}}</h1>
+        <img ng-src="{{dinner.image}}" class="img-responsive">
+        <br>
+        <h3 class="list-group-item-text" id="cuisine-type"><b>CUISINE: </b>{{dinner.cuisinetype}}</h3>
+        <h3 class="list-group-item-text" id="where">{{dinner.where}}</h3>
+        <h4 class="list-group-item-text" id="capacity">Party capacity: {{dinner.capacity}}</h4>
+        <hr>
     </li>
-    </ul>
-    </div>
-    <!-- </div> -->
+  </ul>
+</div>
+</div>
+   
 
 
 

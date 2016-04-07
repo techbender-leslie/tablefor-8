@@ -1,4 +1,4 @@
-var Dinner = require('../models/dinner');
+var Dinner = require('../app/models/dinner');
 
 var dinnersController = {
 	index: function(req, res) {

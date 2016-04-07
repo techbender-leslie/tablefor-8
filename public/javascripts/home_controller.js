@@ -1,3 +1,5 @@
+// var app = angular.module('dinnertable', ['ui.router', 'ngResource']);
+
 app.controller('HomeController', HomeController);
 
 HomeController.$inject = ['Dinner'];

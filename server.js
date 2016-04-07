@@ -1,17 +1,55 @@
-//STEP #1
+var express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    flash = require('connect-flash'),
 
-// require express and other modules
-var app = require('./config');
-var path = require('path');
-var dinnersController = require('./controllers/dinnersController');
-require('./routes');
+    morgan = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session');
 
-  
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname + '/views/index.html'));
-});
+//var configDB = require('./config/database.js');
 
-// listen on port 3000
+// configuration =====================
+//mongoose.connect(configDB.url);
+mongoose.connect('mongodb://localhost/charliestable');
+
+require ('./config/passport')(passport);
+
+// express stuff =====================
+app.use(morgan('dev'));
+app.use(cookieParser());
+//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: true }));
+
+
+// serve static files from public folder
+app.use(express.static(__dirname + '/public'));
+
+// set view engine to hbs (handlebars)
+app.set('view engine', 'hbs');
+
+// passport stuff =====================
+app.use(session({ secret: 'techbenderleslietakingovertheworld'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// routes ==============================
+// require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+// require('./app/routes.js')(app, passport);
+
+app.get('/', function(req, res) {
+        res.render('index');
+        console.log('render index from the back server');
+    });
+
+// launch ==============================
 app.listen(3000, function() {
   console.log('server started on localhost:3000');
 });
+
+
+

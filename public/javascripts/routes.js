@@ -1,5 +1,11 @@
 app.config(config);
 
+
+// app.controller('HomeController', HomeController);
+// app.controller('LoginCtrl', LoginCtrl);
+// app.controller('SignupCtrl', SignupCtrl);
+
+
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -21,14 +27,14 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 	.state('alldinners', {
 		url: '/dinners',
 		templateUrl: 'templates/dinners.html',
-		controller: 'HomeController',
+		controller: 'HomeController', 
 		controllerAs: 'index'
 	})
 
 	.state('signup', {
-			url: '/signup',
-			// controller: "SignupController",
-			// controllerAs: 'sc',
+			url: '/sminenup',
+			controller: "SignupCtrl",
+			controllerAs: 'sc',
 			templateUrl: 'templates/signup.html'
 			// resolve: {
 			// 	skipIfLoggedIn: skipIfLoggedIn
@@ -36,9 +42,9 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 
 		.state('login', {
-			url: '/login',
-			// controller: "LoginController",
-			// controllerAs: 'lc',
+			url: '/smogin',
+			controller: "LoginCtrl",
+			controllerAs: 'lc',
 			templateUrl: 'templates/login.html'
 			// resolve: {
 			// 	skipIfLoggedIn: skipIfLoggedIn
@@ -46,7 +52,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 
 		.state('logout', {
-			url: '/logout',
+			url: '/smogout',
 			template: null
 			// controller: 'LogoutController'
 			// resolve: {
@@ -55,7 +61,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 
 		.state('profile', {
-			url: '/profile',
+			url: '/ppppprofile',
 			templateUrl: 'templates/profile.html'
 			// controller: 'ProfileController',
 			// controllerAs: 'profile'
@@ -65,7 +71,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 
 		.state('about', {
-			url: '/about',
+			url: '/yabout',
 			templateUrl: 'templates/about.html'
 		});
 
