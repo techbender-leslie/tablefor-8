@@ -1,0 +1,182 @@
+<h1 id="dinner-welcome"><center>Welcome to Table for 8 - The Pop-Up Dinner Experience</center></h1>
+<br>
+
+<div class="well col-sm-4">
+<form class="form-horizontal" role="form" ng-submit="index.createDinner()">
+	<fieldset>
+		<legend>Add a New Dinner</legend>
+		<!-- <div ng-include="'templates/_form.html'"></div> -->
+		  <div class="form-group">
+      <label for="dinnername" class="col-sm-2 control-label">Dinner Name</label>
+      <div class="col-sm-9">
+        <input type="text" ng-model="index.dinner.dinnername" class="form-control" id="dinnername" placeholder="Name for Dinner Event"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image" class="col-sm-2 control-label">Image</label>
+      <div class="col-sm-9">
+        <input type="text" ng-model="index.dinner.image" class="form-control" id="image" placeholder="Image to represent this meal"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cuisinetype" class="col-sm-2 control-label">Type of Cuisine</label>
+      <div class="col-sm-9">
+        <select class="form-control" ng-model="index.dinner.cuisinetype" id="cuisinetype">
+          <option>African</option>
+          <option>Traditional American</option>
+          <option>British</option>
+          <option>Californian</option>
+          <option>Caribbean</option>
+          <option>Chinese</option>
+          <option>East European</option>
+          <option>Fusion</option>
+          <option>French</option>
+          <option>Greek</option>
+          <option>Indian</option>
+          <option>Irish/Scotish</option>
+          <option>Italian</option>
+          <option>Japanese</option>
+          <option>Korean</option>
+          <option>Mexican</option>
+          <option>Mediterranean</option>
+          <option>Middle Eastern & Turkish</option>
+          <option>Nordic</option>
+          <option>North African</option>
+          <option>Portuguese</option>
+          <option>Seafood</option>
+          <option>South American</option>
+          <option>Spanish</option>
+          <option>Thai & SE Asian</option>
+          <option>Vegetarian</option>
+          <option>Vietnamese</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="drinks" class="col-sm-2 control-label">Drinks</label>
+      <div class="col-sm-9">
+        <input type="text" ng-model="index.dinner.drinks" class="form-control" id="drinks" placeholder="Cocktails/Beverages for this Meal"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="where" class="col-sm-2 control-label">Where?</label>
+      <div class="col-sm-9">
+        <input type="text" ng-model="index.dinner.where" class="form-control" id="where" placeholder="Where exactly will this dinner be held?"/>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label class="col-sm-2 control-label">Capacity</label>
+      <div class="col-sm-9">
+        <div class="radio">
+          <label>
+            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity6" value="capacity6">
+            6 people
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity8" value="capacity8">
+           8 people
+          </label>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="form-group">
+      <label for="calendar" class="col-sm-2 control-label">Calendar</label>
+      <div class="col-sm-9">
+        <input type="date" ng-model="index.dinner.calendar" class="form-control" id="calendar" placeholder="Date of Dinner Event: "/>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="time" class="col-sm-2 control-label">Time</label>
+      <div class="col-sm-9">
+        <select class="form-control" ng-model="index.dinner.time" id="time">
+          <option>6:00 pm</option>
+          <option>7:00 pm</option>
+          <option>8:00 pm</option>
+          <option>9:00 pm</option>
+          <option>Other (see notes)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dishes" class="col-sm-2 control-label">Dishes</label>
+      <div class="col-sm-9">
+        <input type="text" ng-model="index.dinner.dishes" class="form-control" id="dishes" placeholder="Dishes at this Dinner: "/>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="hostedby" class="col-sm-2 control-label">Hosted By</label>
+      <div class="col-sm-9">
+        <input type="text" ng-model="index.dinner.hostedby" class="form-control" id="hostedby" placeholder="Hosted By: "/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="notes" class="col-sm-2 control-label">Notes</label>
+      <div class="col-sm-9">
+        <textarea ng-model="index.dinner.notes" class="form-control" rows="8" id="notes" placeholder="Menu/Notes:">
+        </textarea>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-4">
+        <button type="reset" class="btn btn-default">Cancel</button>&nbsp;
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+    </div>
+ 
+	</fieldset>
+</form>
+</div>
+
+<div class="col-lg-7 col-lg-offset-1">
+  <div class="panel panel-default" id="dinner-list">
+    <ul class="list-group">
+      <li ng-repeat="dinner in index.dinners" class="list-group-item">
+
+    <!-- <div ng-hide="dinner.editForm"> -->
+      <div class="pull-right">
+     <!--  <a href="#" ng-click="dinner.editForm = true"><h2><i class="fa fa-pencil"></i></h2></a> -->
+      <a href="#" ng-click="index.deleteDinner(dinner)"><p><i class="fa fa times"></i></p></a>
+      </div>
+      <h1 class="list-group-item-text" id="dinner-name">{{dinner.dinnername}}</h1>
+      <img ng-src="{{dinner.image}}" class="img-responsive">
+      <br>
+      <h3 class="list-group-item-text" id="cuisine-type"><b>CUISINE: </b>{{dinner.cuisinetype}}</h3>
+      <h3 class="list-group-item-text" id="where">{{dinner.where}}</h3>
+      <h4 class="list-group-item-text" id="capacity">{{dinner.capacity}}</h4>
+      <hr>
+    </div>
+    </li>
+    </ul>
+    </div>
+    <!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
