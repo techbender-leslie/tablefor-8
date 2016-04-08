@@ -122,23 +122,25 @@ app.get('/api/dinners/:id', function (req, res) {
 
 app.delete('/api/dinners/:id', auth.ensureAuthenticated, function (req, res) {
   User.findById(req.user, function(err, user) {
-  //   var id= req.params.id;
-    // console.log('deleting dinner', id);
+    var dinnerId = req.params.id;
 
-    Dinner.remove({_id: id}, function(err, deletedDinner) {
+    Dinner.findOneAndRemove({ _id: dinnerId }, function (err, deletedDinner) {
       if (err) {
-        res.status(500).json({ error: err.message});
+        res.status(500).json({ error: err.message });
       } else {
-        user.dinners.pop(deletedDinner);
-        user.save();
-        console.log('removing: ', id);
-        res.status(200).send();
+        // user.dinners.pop(deletedDinner);
+        // user.save();
+        console.log('removing: ', dinnerId);
+        res.json(deletedDinner);
       }
     });
   });
 });
 
-// Auth Routes ===================================
+////////////////////////////////////////////////////////////////////
+// AUTH Routes =====================================================
+////////////////////////////////////////////////////////////////////
+
 app.post('/auth/signup', function (req, res) {
   User.findOne({ email: req.body.email }, function (err, existingUser) {
     if (existingUser) {

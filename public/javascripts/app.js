@@ -6,6 +6,7 @@ angular
 	])
 	.controller('MainController', MainController)
 	.controller('IndexController', IndexController)
+	.controller('ShowDinnerController', ShowDinnerController)
 	.controller('LoginController', LoginController)
 	.controller('SignupController', SignupController)
 	.controller('LogoutController', LogoutController)
@@ -50,6 +51,13 @@ angular
 				templateUrl: 'templates/dinners.html',
 				controller: 'IndexController', 
 				controllerAs: 'index'
+			})
+
+			.state('showdinner', {
+				url: '/dinners/:id',
+				templateUrl: 'templates/dinner-show.html',
+				controller: 'ShowDinnerController',
+				controllerAs: 'show'
 			})
 
 	    .state('signup', {
@@ -146,13 +154,20 @@ angular
     				};
 
     		vm.deleteDinner = function(dinner) {
-    			$http.delete("/api/dinners" + dinner._id)
+    			$http.delete("/api/dinners/" + dinner._id)
     				.then(function(response) {
     					var dinnerIndex = vm.dinners.indexOf(dinner);
     					vm.dinners.splice(dinnerIndex, 1);
     				});
 				};
-    		}
+    	}
+
+
+    ShowDinnerController.$inject = ["$http"];
+	    function ShowDinnerController ($http) {
+	    	return $http.get('/api/dinners/:id')
+	    	}
+   
 
 
     LoginController.$inject = ["$location", "Account"];
