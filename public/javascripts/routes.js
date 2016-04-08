@@ -1,80 +1,86 @@
-app.config(config);
+// app.config(config);
 
-config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function config($stateProvider, $urlRouterProvider, $locationProvider) {
-	console.log('config');
+// // app.controller('HomeController', HomeController);
+// // app.controller('LoginCtrl', LoginCtrl);
+// // app.controller('SignupCtrl', SignupCtrl);
 
-	$locationProvider.html5Mode({
-		enabled: true,
-		requireBase: false
-	});
 
-	$urlRouterProvider.otherwise("/");
+// config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-	$stateProvider
-	.state('home', {
-		url: '/',
-		templateUrl: 'templates/home.html' 
-	})
+// function config($stateProvider, $urlRouterProvider, $locationProvider) {
+// 	console.log('config');
 
-	.state('alldinners', {
-		url: '/dinners',
-		templateUrl: 'templates/dinners.html',
-		controller: 'HomeController',
-		controllerAs: 'index'
-	})
+// 	$locationProvider.html5Mode({
+// 		enabled: true,
+// 		requireBase: false
+// 	});
 
-	.state('signup', {
-			url: '/signup',
-			// controller: "SignupController",
-			// controllerAs: 'sc',
-			templateUrl: 'templates/signup.html'
-			// resolve: {
-			// 	skipIfLoggedIn: skipIfLoggedIn
-			// }
-		})
+// 	$urlRouterProvider.otherwise("/");
 
-		.state('login', {
-			url: '/login',
-			// controller: "LoginController",
-			// controllerAs: 'lc',
-			templateUrl: 'templates/login.html'
-			// resolve: {
-			// 	skipIfLoggedIn: skipIfLoggedIn
-			// }
-		})
+// 	$stateProvider
+// 	.state('home', {
+// 		url: '/',
+// 		templateUrl: 'templates/home.html' 
+// 	})
 
-		.state('logout', {
-			url: '/logout',
-			template: null
-			// controller: 'LogoutController'
-			// resolve: {
-			// 	loginRequired: loginRequired
-			// }
-		})
+// 	.state('alldinners', {
+// 		url: '/dinners',
+// 		templateUrl: 'templates/dinners.html',
+// 		controller: 'HomeController', 
+// 		controllerAs: 'index'
+// 	})
 
-		.state('profile', {
-			url: '/profile',
-			templateUrl: 'templates/profile.html'
-			// controller: 'ProfileController',
-			// controllerAs: 'profile'
-			// resolve: {
-			// 	loginRequired: loginRequired
-			// }
-		})
+// 	.state('signup', {
+// 			url: '/sminenup',
+// 			controller: "SignupCtrl",
+// 			controllerAs: 'sc',
+// 			templateUrl: 'templates/signup.html'
+// 			// resolve: {
+// 			// 	skipIfLoggedIn: skipIfLoggedIn
+// 			// }
+// 		})
 
-		.state('about', {
-			url: '/about',
-			templateUrl: 'templates/about.html'
-		});
+// 		.state('login', {
+// 			url: '/smogin',
+// 			controller: "LoginCtrl",
+// 			controllerAs: 'lc',
+// 			templateUrl: 'templates/login.html'
+// 			// resolve: {
+// 			// 	skipIfLoggedIn: skipIfLoggedIn
+// 			// }
+// 		})
 
-}
+// 		.state('logout', {
+// 			url: '/smogout',
+// 			template: null
+// 			// controller: 'LogoutController'
+// 			// resolve: {
+// 			// 	loginRequired: loginRequired
+// 			// }
+// 		})
 
-app.service('Dinner', function($resource){
-  return $resource('http://localhost:3000/api/dinners/:id', { id: '@_id' }, {
-    update: {
-      method: 'PUT' // this method issues a PUT request
-    }
-  });
-});
+// 		.state('profile', {
+// 			url: '/ppppprofile',
+// 			templateUrl: 'templates/profile.html'
+// 			// controller: 'ProfileController',
+// 			// controllerAs: 'profile'
+// 			// resolve: {
+// 			// 	loginRequired: loginRequired
+// 			// }
+// 		})
+
+// 		.state('about', {
+// 			url: '/yabout',
+// 			templateUrl: 'templates/about.html'
+// 		});
+
+// }
+
+// app.service('Dinner', function($resource){
+//   return $resource('http://localhost:3000/api/dinners/:id', { id: '@_id' }, {
+//     update: {
+//       method: 'PUT' // this method issues a PUT request
+//     }
+//   });
+// });

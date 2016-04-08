@@ -1,0 +1,56 @@
+<h1><b>{{dinner.dinnername}}</b></h1>
+
+<h2><span class="label label-primary">{{dinner.cuisinetype}}</span><b>  &nbsp; &nbsp; {{dinner.calendar | date:'MMMM dd, yyyy'}} - {{dinner.time}}</b></h2>
+
+<div class="col-sm-8">
+<br>
+<img ng-src="{{dinner.image}}" class="img-responsive">
+
+<br>
+<h4>Menu:</h4>
+<ul ng-repeat="dish in dishes">
+ <li><h4> {{dish}} </h4></li>
+</ul>
+<ul ng-repeat="drink in drinks">
+<li><h4>{{drink}}</h4></li>
+</ul>
+<br>
+<div class="col-sm-11">
+  <div class="well">
+  <h4>Notes from Host:</h4>
+  <p class="lead">{{dinner.notes}}</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-4">
+  <h3>Location: <b>{{dinner.where}}</b></h3>
+  <h4>Hosted By: {{dinner.hostedby}}</h4>
+  <p><a href="#">Contact host</a></p>
+
+<a class="btn btn-warning btn-lg">RSVP for this dinner party</a> 
+<br>
+
+<br>
+<br>
+  <div class="panel panel-default">
+  <div class="panel-heading"><h3><a href="#">Dinner Party Size &nbsp; <span class="badge">{{dinner.capacity}}</span></a></h3></div>
+  <div class="panel-body">
+    <h4>Leslie G. (Host)</h4>
+    <p>Bringing: Veggie Kabobs</p>
+  </div>
+  <div class="panel-footer">
+    <h4>Michael T.</h4>
+    <p>Bringing: Red Wine and Baklava</p>
+  </div>
+  <div class="panel-body">
+    <h4>Chloe P.</h4>
+    <p>Bringing: White wine and Hummus + Pita</p>
+  </div>
+</div>
+   
+
+
+  <!-- {{dinner.guests}} -->
+  <!-- <a class="btn btn-primary" ui-sref="editDinner({id:dinner._id})">Edit</a> -->
+</div>

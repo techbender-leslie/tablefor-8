@@ -3,35 +3,26 @@ var mongoose = require('mongoose'),
 
 	// Dish = require('./dish');
 	// Guest = require('./guest');
+	User = require('./user');
 
-var DinnerSchema = new Schema({
+var dinnerSchema = new Schema({
+	// host: { type: Schema.Types.ObjectId, ref: 'User'},
 	dinnername : {type : String, default: ''},
 	image: {type: String, default: ''},
 	cuisinetype: {type : String, default: ''},
 	// dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish'}],
+	dishes: [],
 	drinks: [{type: String, default: ''}],
 	where: {type: String, default: ''},
-	capacity: {type: Number, min: 4, max: 10, default: ''},
+	capacity: {type: Number, default: ''},
 	calendar: {type: Date, default: ''},
 	time: {type: String, default: ''},
 	hostedby: {type: String, default: ''},
 	description: {type: String, default: ''},
-	// guests: [{ type: Schema.Types.ObjectId, ref: 'Guest'}],
+	// guests: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+	guests: [User],
 	notes: {type: String, default: ''}
 });
 
 
-DinnerSchema.statics.all = function all(cb) {
-	return
-		this.model.find({})
-		.catch(function(err) {
-			console.log(err);
-		})
-		.then(function(dinners) {
-			cb(dinners);
-		})
-		;
-};
-
-var Dinner = mongoose.model('Dinner', DinnerSchema);
-module.exports = Dinner;
+module.exports = mongoose.model('Dinner', dinnerSchema);
