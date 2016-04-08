@@ -3,12 +3,15 @@ var mongoose = require('mongoose'),
 
 	// Dish = require('./dish');
 	// Guest = require('./guest');
+	User = require('./user');
 
 var dinnerSchema = new Schema({
+	// host: { type: Schema.Types.ObjectId, ref: 'User'},
 	dinnername : {type : String, default: ''},
 	image: {type: String, default: ''},
 	cuisinetype: {type : String, default: ''},
 	// dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish'}],
+	dishes: [{ type: String }],
 	drinks: [{type: String, default: ''}],
 	where: {type: String, default: ''},
 	capacity: {type: Number, default: ''},
@@ -16,7 +19,8 @@ var dinnerSchema = new Schema({
 	time: {type: String, default: ''},
 	hostedby: {type: String, default: ''},
 	description: {type: String, default: ''},
-	// guests: [{ type: Schema.Types.ObjectId, ref: 'Guest'}],
+	// guests: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+	guests: [User],
 	notes: {type: String, default: ''}
 });
 

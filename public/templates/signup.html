@@ -1,30 +1,31 @@
-<h1>This is the new signup page</h1>
+<br>
+<h3><center>Join the TableFor:8 Community and begin creating and attending our pop-up dinner events</center></h3>
+<hr>
+
 <div class="col-sm-6 col-sm-offset-3">
+    <h1><span class="fa fa-user-plus"></span> Signup for <strong>TableFor:8</strong></h1>
+    <br>
 
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-    <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
-    <!-- <form ng-submit="sc.signup()"> -->
+    <form ng-submit="sc.signup()">
         <div class="form-group">
-            <label>Name</label>
-            <input type="text" ng-model="name" class="form-control" name="name" required autofocus>
+          <input type="text" ng-model="sc.new_user.displayName" class="form-control" placeholder="Full Name" required>
         </div>
         <div class="form-group">
-            <label>Email</label>
-            <input type="email" ng-model="email" class="form-control" name="email" required autofocus>
+          <input type="text" ng-model="sc.new_user.username" class="form-control" placeholder="Username" required>
         </div>
         <div class="form-group">
-            <label>Password</label>
-            <input type="password" ng-model="password" class="form-control" name="password" required autofocus>
+          <input type="text" ng-model="sc.new_user.email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" ng-model="sc.new_user.password" class="form-control" placeholder="password" required>
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+        <button type="submit" class="btn btn-block btn-info">Sign Up!</button>
     </form>
 
     <hr>
 
-    <p>Already have an account? <a href="/smogin">Login</a></p>
+    <p class="text-muted">Already have an account? <a ui-sref="login">Login in Here</a></p>
     <p>Or go <a href="/">Home</a></p>
 
 </div>

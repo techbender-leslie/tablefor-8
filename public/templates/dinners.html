@@ -1,29 +1,29 @@
-<h1 id="dinner-welcome"><center>Welcome to Table for 8 - The Pop-Up Dinner Experience</center></h1>
+<h1 id="dinner-welcome"><center>Welcome to <b>TableFor:8</b> - The Pop-Up Dinner Party Experience</center></h1>
 <br>
 
 <div class="well col-sm-4">
-<form class="form-horizontal" role="form" data-ng-submit="index.createDinner()">
+<form class="form-horizontal" role="form" ng-show="main.currentUser()" ng-submit="index.createDinner()">
 	<fieldset>
 		<legend>Add a New Dinner</legend>
-		<!-- <div ng-include="'templates/_form.html'"></div> -->
+		
 		  <div class="form-group">
       <label for="dinnername" class="col-sm-2 control-label">Dinner Name</label>
       <div class="col-sm-9">
-        <input type="text" ng-model="index.dinner.dinnername" class="form-control" id="dinnername" placeholder="Name for Dinner Event"/>
+        <input type="text" ng-model="index.new_dinner.dinnername" class="form-control" id="dinnername" placeholder="Name for Dinner Event"/>
       </div>
     </div>
 
     <div class="form-group">
       <label for="image" class="col-sm-2 control-label">Image</label>
       <div class="col-sm-9">
-        <input type="text" ng-model="index.dinner.image" class="form-control" id="image" placeholder="Image to represent this meal"/>
+        <input type="text" ng-model="index.new_dinner.image" class="form-control" id="image" placeholder="Image to represent this meal"/>
       </div>
     </div>
 
     <div class="form-group">
       <label for="cuisinetype" class="col-sm-2 control-label">Type of Cuisine</label>
       <div class="col-sm-9">
-        <select class="form-control" ng-model="index.dinner.cuisinetype" id="cuisinetype">
+        <select class="form-control" ng-model="index.new_dinner.cuisinetype" id="cuisinetype">
           <option>African</option>
           <option>Traditional American</option>
           <option>British</option>
@@ -59,14 +59,14 @@
     <div class="form-group">
       <label for="drinks" class="col-sm-2 control-label">Drinks</label>
       <div class="col-sm-9">
-        <input type="text" ng-model="index.dinner.drinks" class="form-control" id="drinks" placeholder="Cocktails/Beverages for this Meal"/>
+        <input type="text" ng-model="index.new_dinner.drinks" class="form-control" id="drinks" placeholder="Cocktails/Beverages for this Meal"/>
       </div>
     </div>
 
     <div class="form-group">
       <label for="where" class="col-sm-2 control-label">Where?</label>
       <div class="col-sm-9">
-        <input type="text" ng-model="index.dinner.where" class="form-control" id="where" placeholder="Where exactly will this dinner be held?"/>
+        <input type="text" ng-model="index.new_dinner.where" class="form-control" id="where" placeholder="Where exactly will this dinner be held?"/>
       </div>
     </div>
 
@@ -75,13 +75,13 @@
       <div class="col-sm-9">
         <div class="radio">
           <label>
-            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity6" value="6">
+            <input type="radio" ng-model="index.new_dinner.capacity" name="capacity" id="capacity6" value="6">
             6 people
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" ng-model="index.dinner.capacity" name="capacity" id="capacity8" value="8">
+            <input type="radio" ng-model="index.new_dinner.capacity" name="capacity" id="capacity8" value="8">
            8 people
           </label>
         </div>
@@ -91,7 +91,7 @@
     <div class="form-group">
       <label for="calendar" class="col-sm-2 control-label">Calendar</label>
       <div class="col-sm-9">
-        <input type="date" ng-model="index.dinner.calendar" class="form-control" id="calendar" placeholder="Date of Dinner Event: "/>
+        <input type="date" ng-model="index.new_dinner.calendar" class="form-control" id="calendar" placeholder="Date of Dinner Event: "/>
       </div>
     </div>
 
@@ -99,7 +99,7 @@
     <div class="form-group">
       <label for="time" class="col-sm-2 control-label">Time</label>
       <div class="col-sm-9">
-        <select class="form-control" ng-model="index.dinner.time" id="time">
+        <select class="form-control" ng-model="index.new_dinner.time" id="time">
           <option>6:00 pm</option>
           <option>7:00 pm</option>
           <option>8:00 pm</option>
@@ -112,7 +112,7 @@
     <div class="form-group">
       <label for="dishes" class="col-sm-2 control-label">Dishes</label>
       <div class="col-sm-9">
-        <input type="text" ng-model="index.dinner.dishes" class="form-control" id="dishes" placeholder="Dishes at this Dinner: "/>
+        <input type="text" ng-model="index.new_dinner.dishes" class="form-control" id="dishes" placeholder="Dishes at this Dinner: "/>
       </div>
     </div>
 
@@ -120,14 +120,14 @@
     <div class="form-group">
       <label for="hostedby" class="col-sm-2 control-label">Hosted By</label>
       <div class="col-sm-9">
-        <input type="text" ng-model="index.dinner.hostedby" class="form-control" id="hostedby" placeholder="Hosted By: "/>
+        <input type="text" ng-model="index.new_dinner.hostedby" class="form-control" id="hostedby" placeholder="Hosted By: "/>
       </div>
     </div>
 
     <div class="form-group">
       <label for="notes" class="col-sm-2 control-label">Notes</label>
       <div class="col-sm-9">
-        <textarea ng-model="index.dinner.notes" class="form-control" rows="8" id="notes" placeholder="Menu/Notes:">
+        <textarea ng-model="index.new_dinner.notes" class="form-control" rows="8" id="notes" placeholder="Menu/Notes:">
         </textarea>
       </div>
     </div>
@@ -147,24 +147,25 @@
 
 <div class="col-lg-7 col-lg-offset-1">
   <div class="panel panel-default" id="dinner-list">
-    <ul class="list-group">
-      <li ng-repeat="dinner in index.dinners" class="list-group-item">
+    <div ng-repeat="dinner in index.dinners" class="list-group-item">
 
     <!-- <div ng-hide="dinner.editForm"> -->
       <div class="pull-right">
      <!--  <a href="#" ng-click="dinner.editForm = true"><h2><i class="fa fa-pencil"></i></h2></a> -->
-        <a href="#" ng-click="index.deleteDinner(dinner)"><p><i class="fa fa times"></i></p></a>
+        <a href="#" ng-click="index.deleteDinner(dinner)"><h4>X</i></h4></a>
       </div>
-        <h1 class="list-group-item-text" id="dinner-name">{{dinner.dinnername}}</h1>
+
+
+        <h1 class="list-group-item-text" id="dinner-name"><b><em>{{dinner.dinnername}}</em></b></h1>
+        <h3 class="list-group-item-text" id="cuisine-type">CUISINE:&nbsp; <b>{{dinner.cuisinetype}}</b></h3>
         <img ng-src="{{dinner.image}}" class="img-responsive">
         <br>
-        <h3 class="list-group-item-text" id="cuisine-type"><b>CUISINE: </b>{{dinner.cuisinetype}}</h3>
-        <h3 class="list-group-item-text" id="where">{{dinner.where}}</h3>
-        <h4 class="list-group-item-text" id="capacity">Party capacity: {{dinner.capacity}}</h4>
+        <h4 class="list-group-item-text" id="when">DATE:&nbsp; <strong>{{dinner.calendar | date:'MMMM dd, yyyy'}}&nbsp; - &nbsp;{{dinner.time}}</strong></h4>
+        <h4 class="list-group-item-text" id="where">LOCATION:&nbsp; <strong>{{dinner.where}}</strong></h4>
+        <h4 class="list-group-item-text" id="capacity">DINNER PARTY SIZE:&nbsp; <strong>{{dinner.capacity}} Guests</strong></h4>
         <hr>
-    </li>
-  </ul>
-</div>
+    </div>
+  </div>
 </div>
    
 

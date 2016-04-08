@@ -6,6 +6,21 @@
 	background-repeat: no-repeat;
 }
 
+.inner-jumbo {
+	background-color:rgba(0, 0, 0, 0.5);
+}
+
+.inner-jumbo h1 {
+	font-size: 100px;
+	text-shadow: 2px 2px 5px darkorange, 2px 2px 8px black;
+	
+}
+
+.inner-jumbo h2 {
+	font-size: 56px;
+	text-shadow: 2px 2px 5px darkorange, 2px 2px 8px black;
+}
+
 .navbar {
 	min-height: 50px;
 	border: 0;
@@ -17,6 +32,10 @@
 .navbar-header {
 	float: left;
 	padding-left: 15px;
+}
+
+h3#cuisine-type {
+	margin-top: 0;
 }
 
 
