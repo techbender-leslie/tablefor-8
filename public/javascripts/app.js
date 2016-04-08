@@ -163,10 +163,15 @@ angular
     	}
 
 
-    ShowDinnerController.$inject = ["$http"];
-	    function ShowDinnerController ($http) {
-	    	console.log("Helllooooooooooo")
-	    	return $http.get('/api/dinners/:id')
+    ShowDinnerController.$inject = ["$http", "$location", '$scope'];
+	    function ShowDinnerController ($http, $location, $scope) {
+	    	var dinnerId = ($location.path().split("/")[2]);
+	    	$http.get('/api/dinners/' + dinnerId)
+	    	.then(function(response) {
+	    		$scope.dinner = response.data;
+	    		$scope.drinks = response.data.drinks;
+	    		$scope.dishes = response.data.dishes;
+	    	});
 	    	}
    
 
