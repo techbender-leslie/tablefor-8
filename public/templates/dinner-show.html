@@ -1,1 +1,58 @@
 <h1>This is the Dinner Show Page</h1>
+<table class="table dinnertable">
+  <tr>
+    <td><h3>Details for {{dinner.dinnername}}</h3></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Dinner Name</td>
+    <td>{{dinner.dinnername}}</td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td>{{dinner.image}}</td>
+  </tr>
+  <tr>
+    <td>Cuisine Type</td>
+    <td>{{dinner.cuisinetype}}</td>
+  </tr>
+  <tr>
+    <td>Drinks</td>
+    <td>{{dinner.drinks}}</td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td>{{dinner.where}}</td>
+  </tr>
+  <tr>
+    <td>Capacity</td>
+    <td>{{dinner.capicity}}</td>
+  </tr>
+  <tr>
+    <td>Date</td>
+    <td>{{dinner.calendar}}</td>
+  </tr>
+  <tr>
+    <td>Time</td>
+    <td>{{dinner.time}}</td>
+  </tr>
+  <tr>
+    <td>Dishes</td>
+    <td>{{dinner.dishes}}</td>
+  </tr>
+  <tr>
+    <td>Hosted By:</td>
+    <td>{{dinner.hostedby}}</td>
+  </tr>
+  <tr>
+    <td>Guests: </td>
+    <td>{{dinner.guests}}</td>
+  </tr>
+  <tr>
+    <td>Notes</td>
+    <td>{{dinner.notes}}</td>
+  </tr>
+</table>
+<div>
+  <a class="btn btn-primary" ui-sref="editDinner({id:dinner._id})">Edit</a>
+</div>

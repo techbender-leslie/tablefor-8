@@ -156,7 +156,7 @@
       </div>
 
 
-        <h1 class="list-group-item-text" id="dinner-name"><b><em>{{dinner.dinnername}}</em></b></h1>
+        <a ng-href="/dinners/{{dinner._id}}"><h1 class="list-group-item-text" id="dinner-name"><b><em>{{dinner.dinnername}}</em></b></h1></a>
         <h3 class="list-group-item-text" id="cuisine-type">CUISINE:&nbsp; <b>{{dinner.cuisinetype}}</b></h3>
         <img ng-src="{{dinner.image}}" class="img-responsive">
         <br>

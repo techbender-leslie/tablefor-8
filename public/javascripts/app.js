@@ -165,6 +165,7 @@ angular
 
     ShowDinnerController.$inject = ["$http"];
 	    function ShowDinnerController ($http) {
+	    	console.log("Helllooooooooooo")
 	    	return $http.get('/api/dinners/:id')
 	    	}
    
@@ -228,6 +229,7 @@ angular
 
 
 // SERVICES ==================================
+
 	Account.$inject = ["$http", "$q", "$auth"];
 		function Account($http, $q, $auth) {
 			var self = this;
