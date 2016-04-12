@@ -11,8 +11,16 @@ angular
 	.controller('SignupController', SignupController)
 	.controller('LogoutController', LogoutController)
 	.controller('ProfileController', ProfileController)
+	// .controller('GuestsController', GuestsController)
 	.service('Account', Account)
 	.config(configRoutes)
+
+	// .factory('dinnerService', [function() {
+	// 	var dinnerService = {};
+	// 	dinnerService.query = function() {
+
+	// 	};
+	// }])
 	;
 
 
@@ -163,19 +171,67 @@ angular
     	}
 
 
-    ShowDinnerController.$inject = ["$http", "$location", '$scope'];
-	    function ShowDinnerController ($http, $location, $scope) {
+   	// GuestsController.$inject = ["$http"];
+   	// 	function GuestsController ($http) {
+   	// 		var vm = this;
+   	// 		vm.guests = [];
+   	// 		vm.new_guest = {}; //form data
+
+   	// 		$http.get("/api/dinners/" + dinner._id + "/guests")
+   	// 			.then(function (response) {
+   	// 				vm.guests = response.data;
+   	// 			});
+
+   	// 		vm.createGuest = function(dinner) {
+   	// 			$http.post("/api/dinners/" + dinner._id + "/guests", vm.new_guest)
+   	// 			.then(function (response) {
+   	// 				vm.new_guest = {};
+   	// 				vm.guests.push(response.data);
+   	// 			});
+   	// 		};
+   	// 	}
+
+
+    ShowDinnerController.$inject = ["$http", "$stateParams", "Account", "$location", '$scope', "$state", "$window"];
+	    function ShowDinnerController ($http,  $stateParams, Account, $location, $scope, $state, $window) {
+
+	    	var vm = this;
 	    	var dinnerId = ($location.path().split("/")[2]);
+
 	    	$http.get('/api/dinners/' + dinnerId)
-	    	.then(function(response) {
+	    		.then(function(response) {
+ 		
+   				vm.guests = [];
+   				vm.new_guest = {}; //form data
+
 	    		$scope.dinner = response.data;
 	    		$scope.drinks = response.data.drinks;
 	    		$scope.dishes = response.data.dishes;
+
+	    		vm.guests = $scope.dinner.guests;
 	    	});
-	    	}
+
+	    	// $http.get('/api/dinners/' + dinnerId + '/guests')
+	    	// .then(function (response) {
+	    	// 	// $scope.dinner.guests = response.data;  // this
+	    	// 	vm.dinners = response.data; // or this?
+	    	// })
+
+	    	vm.createGuest = function() {
+
+	    		$http.post('/api/dinners/' + dinnerId + '/guests', vm.new_guest)
+	    		.then(function(response) {
+	    			// Account
+	    			// .currentUser(vm.new_guest);
+	    			vm.guests.push(response.data.guests[(response.data.guests.length)]- 1);
+	    			vm.new_guest = {};
+	    			$state.reload();
+	    		});
+	    	};
+
+	    }
+
    
-
-
     LoginController.$inject = ["$location", "Account"];
     	function LoginController ($location, Account) {
     		var vm = this;
@@ -193,10 +249,12 @@ angular
 
     SignupController.$inject = ["$location", "Account"];
     	function SignupController ($location, Account) {
+    		var picuploader = uploadcare.initialize('#profileimage');
     		var vm = this;
     		vm.new_user = {};
 
     		vm.signup = function() {
+    			vm.new_user.picture = $('#profileimage').val();
     			Account
     			.signup(vm.new_user)
     			.then(
@@ -218,12 +276,14 @@ angular
     		});
     	}
 
-    ProfileController.$inject = ["Account"];
-    	function ProfileController (Account) {
+    ProfileController.$inject = ["$http", "Account"];
+    	function ProfileController ($http, Account) {
+    		var picuploader = uploadcare.initialize('#profileimage');
     		var vm = this;
     		vm.new_profile = {};
 
     		vm.updateProfile = function() {
+    			vm.new_profile.picture = $('#profileimage').val();
     			Account
     			.updateProfile(vm.new_profile)
     			.then(function () {
@@ -246,6 +306,15 @@ angular
 			self.currentUser = currentUser;
 			self.getProfile = getProfile;
 			self.updateProfile = updateProfile;
+
+			// uploadcare.openDialog(null, {
+  	// 	crop: "200x200",
+  	// 	imagesOnly: true
+			// }).done(function(file) {
+  	// 	file.promise().done(function(fileInfo){
+   //  	console.log(fileInfo.cdnUrl);
+  	// 		});
+			// });
 
 			function signup(userData) {
 				return (

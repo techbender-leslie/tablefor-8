@@ -18,20 +18,19 @@ app.set('view engine', 'hbs');
 
 mongoose.connect('mongodb://localhost/charliestable');
 
-// // passport stuff =====================
-// app.use(session({ secret: 'techbenderleslietakingovertheworld'}));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(flash());
 
 var User = require('./models/user');
 var Dinner = require('./models/dinner');
+var Guest = require('./models/guest');
+
+
 
 // ROUTES ==========================================
 
 // User profile APIs ===============================
 app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
   User.findById(req.user, function (err, user) {
+    console.log(user);
     res.send(user.populate('dinners'));
   });
 });
@@ -44,14 +43,26 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
     user.displayName = req.body.displayName || user.displayName;
     user.username = req.body.username || user.username;
     user.email = req.body.email || user.email;
+    user.picture = req.body.picture || user.picture;
     user.save(function(err) {
       res.send(user.populate('dinners'));
     });
   });
 });
 
+//*** Setting up the getting of User's created dinners ///
+app.get('/api/me/dinners', auth.ensureAuthenticated, function (req,res) {
+  console.log('req.user', req.user);
+  User.findById({_id: req.user}, function (err, user) {
+    Dinner.find({_id: {$in: user.dinners}}, function (err, dinners) {
+      if (err) console.log(err);
+      res.send(dinners);
+    });
+  });
+});
 
-// Dinners APIs =======================================
+
+// Dinners and Guests APIs =======================================
 
 app.get('/api/dinners', function (req, res) {
   Dinner.find(function (err, allDinners) {
@@ -79,17 +90,51 @@ app.post('/api/dinners', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-app.get('/api/dinners/:id', function (req, res) {
-  var dinnerId = req.params.id;
 
-  Dinner.findOne({ _id: dinnerId }, function (err, foundDinner) {
+
+app.get('/api/dinners/:id', function (req, res) {
+  var dinnerId= req.params.id;
+  Dinner.findById({_id: dinnerId}, function (err, dinner) {
     if (err) {
       res.status(500).json({ error: err.message });
     } else {
-      res.json(foundDinner);
+      res.send(dinner.populate('guests'));
     }
-  });
+  }); 
 });
+
+app.post('/api/dinners/:id/guests', function (req, res, next) {
+    var dinnerId = req.params.id;
+
+    var guestname = req.body.guestname;
+    var bringing = req.body.bringing;
+    var contactemail = req.body.contactemail;
+
+    Dinner.findById({_id: dinnerId}, function (err, dinner) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        dinner.guests.push({guestname: guestname, bringing: bringing, contactemail: contactemail});
+        dinner.save(function (err, savedDinner) {
+          if (err) console.log(err);
+          res.json(savedDinner);
+        });
+      }
+    });
+  });
+
+
+// app.get('/api/dinners/:id', function (req, res) {
+//   var dinnerId = req.params.id;
+
+//   Dinner.findOne({ _id: dinnerId }, function (err, foundDinner) {
+//     if (err) {
+//       res.status(500).json({ error: err.message });
+//     } else {
+//       res.json(foundDinner);
+//     }
+//   });
+// });
 
 // app.put('/api/dinners/:id', function (req, res) {
 //   User.findById(req.user, function(err, user) {
@@ -120,22 +165,52 @@ app.get('/api/dinners/:id', function (req, res) {
 //   })
 // })
 
-app.delete('/api/dinners/:id', auth.ensureAuthenticated, function (req, res) {
-  User.findById(req.user, function(err, user) {
-    var dinnerId = req.params.id;
 
-    Dinner.findOneAndRemove({ _id: dinnerId }, function (err, deletedDinner) {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        // user.dinners.pop(deletedDinner);
-        // user.save();
-        console.log('removing: ', dinnerId);
-        res.json(deletedDinner);
-      }
-    });
+app.delete('/api/dinners/:id', function (req, res) {
+  var dinnerId= req.params.id;
+  Dinner.findOneAndRemove({_id: dinnerId}, function (err, deletedDinner) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(deletedDinner);
+    }
   });
 });
+
+//***  OLD DELETE DINNERS API *********//
+// app.delete('/api/dinners/:id', auth.ensureAuthenticated, function (req, res) {
+//   User.findById(req.user, function(err, user) {
+//     var dinnerId = req.params.id;
+
+//     Dinner.findOneAndRemove({ _id: dinnerId }, function (err, deletedDinner) {
+//       if (err) {
+//         res.status(500).json({ error: err.message });
+//       } else {
+//         // user.dinners.pop(deletedDinner);
+//         // user.save();
+//         console.log('removing: ', dinnerId);
+//         res.json(deletedDinner);
+//       }
+//     });
+//     });
+//   });
+
+//////////////////////////////////////////////////////////////
+
+// ** THIS IS NOW INCORPORATED INTO DINNERS GET API
+// app.get('/api/dinners/:id/guests', function (req,res) {
+//   Dinner.findById(req.dinner, function(err, dinner) {
+//     Guest.find(function (err, allGuests) {
+//       if (err) {
+//         res.status(500).json({ error: err.message });
+//       } else {
+//         res.json(allGuests);
+//       }
+//     });
+//   });
+// });
+
+
 
 ////////////////////////////////////////////////////////////////////
 // AUTH Routes =====================================================

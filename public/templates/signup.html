@@ -19,6 +19,11 @@
         <div class="form-group">
           <input type="password" ng-model="sc.new_user.password" class="form-control" placeholder="password" required>
         </div>
+        <div class="form-group">
+          <input type="hidden" role="uploadcare-uploader" data-images-only
+          data-crop="200x200" data-images-only="true" id="profileimage"/>
+        </div>
+        <br>
 
         <button type="submit" class="btn btn-block btn-info">Sign Up!</button>
     </form>

@@ -1,12 +1,18 @@
 <h1 id="dinner-welcome"><center>Welcome to <b>TableFor:8</b> - The Pop-Up Dinner Party Experience</center></h1>
 <br>
 
-<div class="well col-sm-4">
+
+<!-- <button class="btn btn-primary" ng-click="index.displayAddDinner = true">Create a New Dinner Party</button> -->
+<!-- ng-show="index.displayAddDinner" -->
+<div class="well col-sm-4" >
+<div ng-show="!main.currentUser()">
+  <h3>Sign up or Login to Host a <strong>TableFor:8</strong> Dinner Party!</h3>
+</div>
 <form class="form-horizontal" role="form" ng-show="main.currentUser()" ng-submit="index.createDinner()">
 	<fieldset>
 		<legend>Add a New Dinner</legend>
 		
-		  <div class="form-group">
+		<div class="form-group">
       <label for="dinnername" class="col-sm-2 control-label">Dinner Name</label>
       <div class="col-sm-9">
         <input type="text" ng-model="index.new_dinner.dinnername" class="form-control" id="dinnername" placeholder="Name for Dinner Event"/>
@@ -142,15 +148,17 @@
     
     <div class="form-group">
       <div class="col-sm-9 col-sm-offset-4">
-        <button type="reset" class="btn btn-default">Cancel</button>&nbsp;
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" ng-click="index.displayAddDinner= false" class="btn btn-default">Cancel</button>&nbsp;
+        <button type="submit" ng-click="index.displayAddDinner= false" class="btn btn-primary">Submit</button>
       </div>
     </div>
-    </div>
+  <!--   </div> -->
  
 	</fieldset>
 </form>
 </div>
+</div>
+
 
 <div class="col-lg-7 col-lg-offset-1">
   <div class="panel panel-default" id="dinner-list">
