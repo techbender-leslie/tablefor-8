@@ -209,6 +209,7 @@ angular
 	    		$scope.dishes = response.data.dishes;
 
 	    		vm.guests = $scope.dinner.guests;
+	    		$scope.countem = vm.guests.length;
 	    	});
 
 	    	// $http.get('/api/dinners/' + dinnerId + '/guests')

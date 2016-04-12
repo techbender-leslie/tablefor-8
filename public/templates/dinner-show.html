@@ -1,47 +1,45 @@
 <h1><b>{{dinner.dinnername}}</b></h1>
 <br>
 
-<h2><span class="label label-primary">{{dinner.cuisinetype}}</span><b>  &nbsp; &nbsp; {{dinner.calendar | date:'MMMM dd, yyyy'}} - {{dinner.time}}</b></h2>
-<br>
-
 <div class="col-sm-8">
-<br>
-<img ng-src="{{dinner.image}}" class="img-responsive">
-
-<br>
-<h4>Menu:</h4>
-<ul ng-repeat="dish in dishes">
- <li><h4> {{dish}} </h4></li>
-</ul>
-<ul ng-repeat="drink in drinks">
-<li><h4>{{drink}}</h4></li>
-</ul>
-<br>
-<div class="col-sm-11">
-  <div class="well">
-  <h4>Notes from Host:</h4>
-  <p class="lead">{{dinner.notes}}</p>
+  <h2><span class="label label-primary">{{dinner.cuisinetype}}</span><b>  &nbsp; &nbsp; {{dinner.calendar | date:'MMMM dd, yyyy'}} - {{dinner.time}}</b></h2>
+  <br>
+  <img ng-src="{{dinner.image}}" class="img-responsive">
+  <br>
+  <h4>Menu:</h4>
+  <ul ng-repeat="dish in dishes">
+   <li><h4> {{dish}} </h4></li>
+  </ul>
+  <ul ng-repeat="drink in drinks">
+  <li><h4>{{drink}}</h4></li>
+  </ul>
+  <br>
+  <div class="col-sm-11">
+    <div class="well">
+      <h4>Notes from Host:</h4>
+      <p class="lead">{{dinner.notes}}</p>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="col-sm-4">
   <h3>Location: <b>{{dinner.where}}</b></h3>
   <h4>Hosted By: {{dinner.hostedby}}</h4>
-  <p><a href="#">Contact host</a></p>
-
-
-  <!-- <a class="btn btn-warning btn-lg">RSVP for this dinner party</a>  -->
+  <p><a href=mailto:{{dinner.contactemail}}>Email Host</a></p>
+  <br>
   <br>
 
-  <br>
   <div class="panel panel-default">
     <div class="panel-heading"><h3><center><a href="#">Dinner Party Size &nbsp; <span class="badge">{{dinner.capacity}}</span></a></center></h3></div>
-    
-
-    <h3><center><button class="btn btn-lg btn-primary" ng-click="show.displayAddGuest = true">RSVP for this dinner</button></center></h3>
   
+    <h3 ng-if="countem < dinner.capacity"><center><button class="btn btn-lg btn-success" ng-show="main.currentUser()" ng-click="show.displayAddGuest = true">RSVP for this dinner</button></center></h3>
 
+    
+    <h2 ng-if="countem >= dinner.capacity"><center><span class="label label-lg label-danger"><strong>THIS DINNER IS FULL</strong></span></center></h2>
+    <br>
+
+    <h4><strong><center>How many are coming? &nbsp; {{countem}} </center></strong></h4>
+   
     <div ng-show="show.displayAddGuest" id="little-form">
       <form ng-submit="show.createGuest()">
         <div class="form-group">
@@ -57,14 +55,16 @@
         </div>
         <div class="form-group">
           <label for="guest-name">Contact email:</label>
-          <input type="text" ng-model="show.new_guest.contactemail" id="guest-contactemail">
+          <input type="text" ng-model="show.new_guest.contactemail" class="form-control" id="guest-contactemail">
         </div>
+
           <input type="submit" value="RSVP" class="btn btn-warning btn-lg">
       </form>
     </div>
     <div class="panel-body">
+    <h4 class="text-warning" ng-show="!main.currentUser()"><strong><center>Login to RSVP and see guest list</center></strong></h4>
     <ol>
-      <li ng-repeat="guest in dinner.guests">
+      <li ng-show="main.currentUser()" ng-repeat="guest in dinner.guests">
         <h4><strong><a href=mailto:{{guest.contactemail}}> {{guest.guestname}} </strong></a> | {{guest.bringing}}</h4>
       </li>
     </ol>

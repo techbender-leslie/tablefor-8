@@ -5,9 +5,21 @@
 <!-- <button class="btn btn-primary" ng-click="index.displayAddDinner = true">Create a New Dinner Party</button> -->
 <!-- ng-show="index.displayAddDinner" -->
 <div class="well col-sm-4" >
+
 <div ng-show="!main.currentUser()">
-  <h3>Sign up or Login to Host a <strong>TableFor:8</strong> Dinner Party!</h3>
+  <h3 class="text-warning">Sign up or Login to Host a <strong>TableFor:8</strong> Dinner Party!</h3>
+  <br>
+  <h3><strong>What people are saying:</strong></h3>
+  <br>
+  <p class="lead"><em>"I haven't had that much fun in quite some time. My dinner party group was great"</em> <small>~Stella W.</small></p>
+  <br>
+  <p class="lead"><em>"Usually politics is a sensative topic at small dinner parties. I found everyone open minded and engaging"</em> <small>  ~David C.</small></p>
+  <br>
+  <img ng-src="http://blog.timelesswroughtiron.com/wp-content/uploads/2015/07/nighttime-entertaining-ideas-10-450x450.jpg" class="img-responsive">
+  <br>
+  <p class="lead"><em>"It was so nice to have such talented cooks come together for a shared meal. The environment was simply wonderful"</em><small> ~Leslie G </small></p>
 </div>
+
 <form class="form-horizontal" role="form" ng-show="main.currentUser()" ng-submit="index.createDinner()">
 	<fieldset>
 		<legend>Add a New Dinner</legend>
