@@ -37,6 +37,7 @@ My final project in General Assembly's Web Development Immersive program (Jan - 
 * Dinners appear 2x2 now on index page, uniform size
 * Create dinner party will not show if not logged in, nice filler in its place
 * Sign up for dinner party will not show if not logged in, nor guest list
+* Profile picture upload using uploadcare
 
 
 ** Soon to implemented: **
