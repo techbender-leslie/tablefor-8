@@ -53,6 +53,29 @@ h1#dinner-name em.ng-binding {
 	padding: 10px;
 }
 
+#dinner-list {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 0;
+	width: 350px;
+	height: 535px;
+	margin: 5px;
+	float: left;
+}
+
+#dinner-list img {
+	height: 240px;
+}
+
+#dinner-list-holder {
+
+}
+
+#bottom-info {
+	position: absolute;
+	bottom: 5px;
+}
 
 
 
