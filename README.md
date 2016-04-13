@@ -25,7 +25,7 @@ My final project in General Assembly's Web Development Immersive program (Jan - 
 * Satellizer for Auth
 * Bootstrap, Font Awesome, Custom Styling
 
-**Now using 3 models: **
+** Now using 3 models: **
 * Users - Full log in, log out, profile show and edit
 * Dinners - Available as index and also as individual show pages. Full CRUD for dinners
 * Guests - Stores information about people attending the dinner
@@ -34,12 +34,12 @@ My final project in General Assembly's Web Development Immersive program (Jan - 
 ** Recently improved/implemented: **
 * People have ability to sign up for dinner parties and dish bringing
 * Dinner will stop sign up if max number is reached- full message shows
-* Diners appear 2x2 now on index page, uniform size
+* Dinners appear 2x2 now on index page, uniform size
 * Create dinner party will not show if not logged in, nice filler in its place
 * Sign up for dinner party will not show if not logged in, nor guest list
 
 
-**Soon to implemented: **
+** Soon to implemented: **
 * Iterate over data arrays in Angular to create better front end experience
 * Implementing Stripe to reserve peopel's spots. No show = $25 penalty
 
