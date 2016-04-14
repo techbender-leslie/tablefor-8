@@ -16,19 +16,14 @@ app.use(express.static(__dirname + '/public'));
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-var db;
-
 mongoose.connect(
   process.env.MONGOLAB_URI || 
   'mongodb://localhost/charliestable');
-
-db=database;
 
 
 var User = require('./models/user');
 var Dinner = require('./models/dinner');
 var Guest = require('./models/guest');
-
 
 
 // ROUTES ==========================================
