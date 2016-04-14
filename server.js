@@ -16,7 +16,10 @@ app.use(express.static(__dirname + '/public'));
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-mongoose.connect('mongodb://localhost/charliestable');
+mongoose.connect(
+  process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  'mongodb://localhost/charliestable');
 
 
 var User = require('./models/user');
