@@ -2,8 +2,8 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    auth = require('./resources/auth'),
-    favicon = require('serve-favicon');
+    auth = require('./resources/auth');
+    // favicon = require('serve-favicon');
     
 require('dotenv').load();
 
@@ -14,13 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
+// app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-mongoose.connect(process.env.MONGOLAB_URI || 
-  "mongodb://localhost/charliestable");
+mongoose.connect("mongodb://localhost/charliestable");
 
 
 var User = require('./models/user');
@@ -179,40 +178,6 @@ app.delete('/api/dinners/:id', function (req, res) {
     }
   });
 });
-
-//***  OLD DELETE DINNERS API *********//
-// app.delete('/api/dinners/:id', auth.ensureAuthenticated, function (req, res) {
-//   User.findById(req.user, function(err, user) {
-//     var dinnerId = req.params.id;
-
-//     Dinner.findOneAndRemove({ _id: dinnerId }, function (err, deletedDinner) {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else {
-//         // user.dinners.pop(deletedDinner);
-//         // user.save();
-//         console.log('removing: ', dinnerId);
-//         res.json(deletedDinner);
-//       }
-//     });
-//     });
-//   });
-
-//////////////////////////////////////////////////////////////
-
-// ** THIS IS NOW INCORPORATED INTO DINNERS GET API
-// app.get('/api/dinners/:id/guests', function (req,res) {
-//   Dinner.findById(req.dinner, function(err, dinner) {
-//     Guest.find(function (err, allGuests) {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else {
-//         res.json(allGuests);
-//       }
-//     });
-//   });
-// });
-
 
 
 ////////////////////////////////////////////////////////////////////
