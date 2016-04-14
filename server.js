@@ -4,6 +4,10 @@ var express = require('express'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth');
     // favicon = require('serve-favicon');
+
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/charliestabel');
+   // "mongodb://localhost/charliestable");
+
     
 require('dotenv').load();
 
@@ -18,11 +22,6 @@ app.use(express.static(__dirname + '/public'));
 
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
-
-mongoose.connect(
-   "mongodb://table8admin:password@ds023570.mlab.com:23570/heroku_gvmv6bdd");
-   // || "mongodb://localhost/charliestable");
-
 
 var User = require('./models/user');
 var Dinner = require('./models/dinner');
@@ -223,14 +222,13 @@ app.post('/auth/login', function (req, res) {
 
 
 // Catch all Route
-app.get('/', function(req, res) {
-        res.render('index');
-        console.log('render index from the back server');
-    });
+// app.get('/', function(req, res) {
+//         res.render('index');
+//         console.log('render index from the back server');
+//     });
 
 app.get('*', function(req, res) {
         res.render('index');
-        console.log('render index again');
 });
 
 // launch ==============================
