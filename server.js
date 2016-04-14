@@ -20,8 +20,8 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 
 mongoose.connect(
-   // "mongodb://table8admin:password@ds023570.mlab.com:23570/heroku_gvmv6bdd" || 
-   "mongodb://localhost/charliestable");
+   "mongodb://table8admin:password@ds023570.mlab.com:23570/heroku_gvmv6bdd");
+   // || "mongodb://localhost/charliestable");
 
 
 var User = require('./models/user');
@@ -237,6 +237,4 @@ app.get('*', function(req, res) {
 app.listen(3000, function() {
   console.log('Your server has been started on LH:3000');
 });
-
-
 
