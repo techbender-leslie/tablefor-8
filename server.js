@@ -2,7 +2,8 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    auth = require('./resources/auth');
+    auth = require('./resources/auth'),
+    favicon = require('serve-favicon');
     
 require('dotenv').load();
 
@@ -13,12 +14,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-mongoose.connect(
-  process.env.MONGOLAB_URI || 
-  'mongodb://localhost/charliestable');
+mongoose.connect(process.env.MONGOLAB_URI || 
+  "mongodb://localhost/charliestable");
 
 
 var User = require('./models/user');
