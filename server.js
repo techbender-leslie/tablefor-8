@@ -265,8 +265,7 @@ app.get('*', function(req, res) {
 });
 
 // launch ==============================
-app.listen(process.env.PORT || 3000, function() {
-  var port = server.address().port;
+app.listen(3000, function() {
   console.log('Your server has been started on LH:3000');
 });
 
