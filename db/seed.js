@@ -2,11 +2,11 @@
 // run 'node seed.js' to seed
 
 var mongoose = require('mongoose'),
-	// conn= mongoose.connect(
-	// 	process.env.MONGOLAB_URI ||
-	// 	process.env.MONGOHQ_URL ||
-	// 	"mongodb://localhost/charliestable"
-	// 	),
+	conn= mongoose.connect(
+		process.env.MONGOLAB_URI ||
+		process.env.MONGOHQ_URL ||
+		"mongodb://localhost/charliestable"
+		),
 		Dinner = require("../models/dinner");
 
 		Dinner.remove({}, function(err) {

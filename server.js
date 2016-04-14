@@ -16,10 +16,13 @@ app.use(express.static(__dirname + '/public'));
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
+var db;
+
 mongoose.connect(
   process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
   'mongodb://localhost/charliestable');
+
+db=database;
 
 
 var User = require('./models/user');
@@ -267,7 +270,8 @@ app.get('*', function(req, res) {
 });
 
 // launch ==============================
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
+  var port = server.address().port;
   console.log('Your server has been started on LH:3000');
 });
 
