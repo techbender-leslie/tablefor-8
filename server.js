@@ -19,7 +19,8 @@ app.use(express.static(__dirname + '/public'));
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-mongoose.connect("mongodb://localhost/charliestable");
+mongoose.connect(
+   "mongodb://table8admin:password@ds023570.mlab.com:23570/heroku_gvmv6bdd" || "mongodb://localhost/charliestable");
 
 
 var User = require('./models/user');

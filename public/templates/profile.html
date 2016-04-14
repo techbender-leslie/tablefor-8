@@ -1,7 +1,7 @@
 <h2><center>This is the new profile page</center></h2>
 
 <h3>{{main.currentUser().displayName}}</h3>
-<img class="pic img-circle" src="{{main.currentUser().picture}}"><br>
+<img ng-src="{{main.currentUser().picture}}" class="pic img-circle" ><br>
 <hr>
 <p><strong>Email:</strong> {{main.currentUser().email}}</p>
 <p><strong>Username:</strong> {{main.currentUser().username}}</p>
@@ -29,7 +29,7 @@
   </div>
   <div class="form-group">
     <p><strong>Profile Picture</strong></p>
-    <input type="hidden" role="uploadcare-uploader" id="profileimage"/>
+    <input type="hidden" role="uploadcare-uploader" id="edit-profileimage"/>
   </div>
   <br>
   <input type="submit" value="Save Changes" class="btn btn-info">&nbsp;

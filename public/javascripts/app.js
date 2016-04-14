@@ -248,8 +248,8 @@ angular
     		};
     	}
 
-    SignupController.$inject = ["$location", "Account"];
-    	function SignupController ($location, Account) {
+    SignupController.$inject = ["Account", "$location"];
+    	function SignupController (Account, $location) {
     		var picuploader = uploadcare.initialize('#profileimage');
     		var vm = this;
     		vm.new_user = {};
@@ -277,14 +277,15 @@ angular
     		});
     	}
 
-    ProfileController.$inject = ["$http", "Account"];
-    	function ProfileController ($http, Account) {
-    		var picuploader = uploadcare.initialize('#profileimage');
+    ProfileController.$inject = ["Account"]; //took out $http
+    	function ProfileController (Account) {
+    		var picuploader = uploadcare.initialize('#edit-profileimage');
+    		
     		var vm = this;
     		vm.new_profile = {};
 
     		vm.updateProfile = function() {
-    			vm.new_profile.picture = $('#profileimage').val();
+    			vm.new_profile.picture = $('#edit-profileimage').val();
     			Account
     			.updateProfile(vm.new_profile)
     			.then(function () {
